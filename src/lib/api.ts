@@ -35,6 +35,7 @@ export async function fetchNewsAPI(filters: NewsFilters, page: number = 1) {
   });
 
   const response = await fetch(`${baseUrl}?${params}`);
+  console.log(response);
   if (!response.ok) throw new Error('Failed to fetch from News API');
   
   const data = await response.json();
@@ -68,6 +69,7 @@ export async function fetchGuardian(filters: NewsFilters, page: number = 1) {
   });
 
   const response = await fetch(`https://content.guardianapis.com/search?${params}`);
+  console.log(response);
   if (!response.ok) throw new Error('Failed to fetch from Guardian API');
   
   const data = await response.json();
@@ -99,6 +101,7 @@ export async function fetchNYT(filters: NewsFilters, page: number = 1) {
   });
 
   const response = await fetch(`https://api.nytimes.com/svc/search/v2/articlesearch.json?${params}`);
+  console.log(response);
   if (!response.ok) throw new Error('Failed to fetch from NYT API');
   
   const data = await response.json();
