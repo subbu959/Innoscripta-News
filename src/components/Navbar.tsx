@@ -36,19 +36,19 @@ export function Navbar() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 bg-black/95 border-b border-gray-800 z-50">
-      <div className="max-w-7xl mx-auto px-4 h-16">
-        <div className="flex items-center justify-between h-full gap-8">
+      <div className="max-w-7xl mx-auto px-4 h-20">
+        <div className="flex items-center justify-between h-full">
           {/* Logo */}
           <button
             onClick={handleReset}
-            className="flex items-center gap-2 text-red-600 hover:text-red-500 transition-colors shrink-0 h-10"
+            className="flex items-center gap-2 text-red-600 hover:text-red-500 transition-colors"
           >
             <Newspaper className="h-8 w-8" />
             <span className="text-xl font-bold hidden sm:inline">Innoscripta News</span>
           </button>
           
-          {/* Desktop Search */}
-          <div className="hidden lg:flex flex-1 justify-center">
+          {/* Desktop Search - Only visible on large screens */}
+          <div className="hidden lg:block flex-1 max-w-3xl mx-8">
             <SearchBar
               filters={localFilters}
               onFiltersChange={setLocalFilters}
@@ -57,27 +57,28 @@ export function Navbar() {
             />
           </div>
 
-          {/* Mobile Menu */}
+          {/* Mobile/Tablet Menu Button */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
               <Button 
                 variant="ghost" 
                 size="icon"
-                className="lg:hidden text-gray-400 hover:text-white h-10 w-10"
+                className="lg:hidden text-gray-400 hover:text-white"
               >
                 {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-full sm:max-w-md bg-black border-gray-800">
-              <SheetHeader>
-                <SheetTitle className="text-white">Search News</SheetTitle>
-              </SheetHeader>
-              <div className="mt-8">
+            <SheetContent 
+              side="top" 
+              className="w-full bg-black border-gray-800 pt-20"
+            >
+              <div className="container max-w-2xl mx-auto px-4">
                 <SearchBar
                   filters={localFilters}
                   onFiltersChange={setLocalFilters}
                   onSubmit={handleSubmit}
                   loading={loading}
+                  variant="stacked"
                 />
               </div>
             </SheetContent>
